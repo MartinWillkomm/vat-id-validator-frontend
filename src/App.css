@@ -1,7 +1,15 @@
 .App {
-  text-align: center;
+  text-align: left;
+  max-width: 800px;
+  margin-left: 50px;
+  margin-top: 50px;
 }
 
+.Button-right {
+  float: right;
+}
+
+/*
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -36,3 +44,4 @@
     transform: rotate(360deg);
   }
 }
+*/
