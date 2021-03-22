@@ -6,10 +6,8 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        {/* <img src={logo} className="App-logo" alt="logo" /> */}
-        <p>
-          <h3>Demo Application using a rest backend to validate VAT-IDs</h3>
-        </p>
+        <h4>React Demo App using a Spring Boot rest backend to validate VAT-IDs</h4>
+        <br/>
         <FormComponent></FormComponent>
       </header>
     </div>

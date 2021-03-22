@@ -7,7 +7,7 @@ export default class FormComponent extends Component{
     constructor() {
         super();
         this.state = {
-            vatId: null,
+            vatId: '',
             errors: {
                 vatIdValid: false,
                 vatIdInValid: false
@@ -16,7 +16,7 @@ export default class FormComponent extends Component{
         this.validateInput = this.validateInput.bind(this)
         this.handleChange = this.handleChange.bind(this)
     }
-    
+
     handleChange = event => {
         this.setState({
             vatId: event.target.value
@@ -32,31 +32,23 @@ export default class FormComponent extends Component{
             })
             .then((response) => response.json())
             .then((isVatIdValid) => {
-                console.log('callback::valid? ' + isVatIdValid);    
-                if (isVatIdValid) {
-                    this.setState({
-                        errors: { 
-                            vatIdValid: true,
-                            vatIdInValid: false
-                        }
-                    });
-                }
-                else {
-                    this.setState({
-                        errors: { 
-                            vatIdValid: false,
-                            vatIdInValid: true
-                        }
-                    });
-                }
+                console.log('callback::valid? ' + isVatIdValid + " - " + typeof isVatIdValid);    
+                this.setState({
+                    errors: { 
+                        vatIdValid: isVatIdValid,
+                        vatIdInValid: !isVatIdValid
+                    }
+                });
             });
     }
 
     render() {
         return <Form>
             <Form.Group>
-                <Form.Label>VAT ID</Form.Label>
+                <Form.Label>Enter VAT-ID to validate</Form.Label>
                 <Form.Control autoFocus id="vat-id-input" isInvalid={this.state.errors.vatIdInValid} isValid={this.state.errors.vatIdValid} value={this.state.vatId} type="text" placeholder="Please enter vat id" onChange={this.handleChange} />
+                <Form.Control.Feedback>VAT-ID is valid!</Form.Control.Feedback>
+                <Form.Control.Feedback type="invalid">VAT-ID is not valid. Please check input.</Form.Control.Feedback>
                 <Form.Text className="text-muted">
                 Currently supported countries are: DE, AT, GB, FR, DK, NL
                 </Form.Text>
