@@ -24,7 +24,7 @@ export default class FormComponent extends Component{
     }
 
     validateInput() {
-        var validationUrl = "http://localhost:8080/api/validation/v1/vatid/" + this.state.vatId;
+        var validationUrl = "https://vat-id-validator-backend.herokuapp.com/api/validation/v1/vatid/" + this.state.vatId;
         console.log('validating input:' + validationUrl);
         
             fetch(validationUrl, {

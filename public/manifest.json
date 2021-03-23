@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Vat-Id Validator",
+  "name": "Vat-Id Validator (React App w/Spring Boot backend)",
   "icons": [
     {
       "src": "favicon.ico",
