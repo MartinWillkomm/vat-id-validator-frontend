@@ -15,12 +15,24 @@ export default class FormComponent extends Component{
         };  
         this.validateInput = this.validateInput.bind(this)
         this.handleChange = this.handleChange.bind(this)
+        this.onFormSubmit = this.onFormSubmit.bind(this)
     }
 
     handleChange = event => {
         this.setState({
             vatId: event.target.value
         });
+    }
+
+    /**
+     * this is just to override and catch the 'return' key event on the Form.Control, 
+     * which would re-render the page. by "handling" it this way, it
+     * won't re-render and loose the input, but instead validate the input, which
+     * is what the user wants.
+     */
+    onFormSubmit = e => {
+        e.preventDefault();
+        this.validateInput();
     }
 
     validateInput() {
@@ -43,7 +55,7 @@ export default class FormComponent extends Component{
     }
 
     render() {
-        return <Form>
+        return <Form onSubmit={this.onFormSubmit}>
             <Form.Group>
                 <Form.Label>Enter VAT-ID to validate</Form.Label>
                 <Form.Control autoFocus id="vat-id-input" isInvalid={this.state.errors.vatIdInValid} isValid={this.state.errors.vatIdValid} value={this.state.vatId} type="text" placeholder="Please enter vat id" onChange={this.handleChange} />
@@ -52,7 +64,7 @@ export default class FormComponent extends Component{
                 <Form.Text className="text-muted">
                 Currently supported countries are: DE, AT, GB, FR, DK, NL
                 </Form.Text>
-                <Button className="Button-right" onClick={this.validateInput} size="lg">Validate</Button>
+                <Button className="Button-right" onClick={this.validateInput}>Validate</Button>
             </Form.Group>
         </Form>
     }
