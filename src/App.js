@@ -1,6 +1,6 @@
 import './App.css';
-import FormComponent from './FormComponent';
-
+import VatIdValidationForm from './validation/VatIdValidationForm';
+import * as Constants from './constants/Constants'
 
 function App() {
   return (
@@ -8,7 +8,7 @@ function App() {
       <header className="App-header">
         <h4>React Demo App using a Spring Boot rest backend to validate VAT-IDs</h4>
         <br/>
-        <FormComponent></FormComponent>
+        <VatIdValidationForm></VatIdValidationForm>
       </header>
     </div>
   );
